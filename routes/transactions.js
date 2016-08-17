@@ -29,14 +29,14 @@ router.post('/', (req, res) => {
 })
 
 // DELETE
-router.put('/:id', (req, res) => {
+router.delete('/:id', (req, res) => {
   Transaction.findByIdAndRemove(req.params.id, err => {
     res.status(err ? 400: 200).send(err || `Transaction ${req.params.id} was removed!`);
   })
 })
 
 // UPDATE
-router.delete('/:id', (req, res) => {
+router.put('/:id', (req, res) => {
   Transaction.findByIdAndUpdate(req.params.id, {$set: req.body}, err => {
     res.status(err ? 400: 200).send(err || req.body);
   })

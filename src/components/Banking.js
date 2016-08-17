@@ -6,7 +6,6 @@ const Banking = React.createClass({
   render() {
     return (
       <div>
-        <h1>CH Bank</h1>
         <TransactionsList />
       </div>
     )

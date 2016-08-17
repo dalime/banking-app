@@ -2,9 +2,15 @@
   "name": "bankingapp",
   "version": "0.0.0",
   "private": true,
+  "main": "app.js",
+  "start": "node app.js",
   "scripts": {
     "start": "node ./node_modules/babel-cli/bin/babel-node.js --presets react,es2015 app.js",
+    "postinstall": "webpack --config ./webpack.config.js --progress --colors",
     "build": "webpack --config ./webpack.config.js"
+  },
+  "engines": {
+    "node": "6.3.1"
   },
   "dependencies": {
     "babel-cli": "^6.11.4",

@@ -1,4 +1,5 @@
 import React from 'react';
+import EditForm from './EditForm';
 
 const Transaction = React.createClass({
   getInitialState() {
@@ -22,6 +23,7 @@ const Transaction = React.createClass({
         <td>{this.props.transactionDescription}</td>
         <td>{this.props.transactionValue}</td>
         <td>{this.props.transactionType}</td>
+        <td>{this.props.transactionDate}</td>
         <td>
           <EditForm hidden={this.state.visible} formVisible={this.setFormHidden} updateTransaction={this.props.updateTransaction} transactionId={this.props.transactionId} transactionDescription={this.props.transactionDescription} transactionValue={this.props.transactionValue} transactionType={this.props.transactionType}/>
         </td>
@@ -37,17 +39,9 @@ const Transaction = React.createClass({
 })
 
 const CurrentList = React.createClass({
-  getInitialState() {
-    return {
-      transactions: this.props.currTransactions
-    }
-  },
-  componentDidUpdate() {
-    this.setState({transactions: this.props.currTransactions});
-  },
   render() {
-    let transactionList = this.state.transactions.map(transaction => {
-      return <Transaction key={transaction.id} transactionId={transaction.id} transactionDescription={transaction.description} transactionValue={transaction.value} transactionType={transaction.type} deleteTransaction={this.props.delete} updateTransaction={this.props.update} />
+    let transactionList = this.props.currTransactions.map(transaction => {
+      return <Transaction key={transaction._id} transactionId={transaction._id} transactionDescription={transaction.description} transactionValue={transaction.value} transactionType={transaction.type} transactionDate={transaction.updatedAt} deleteTransaction={this.props.delete} updateTransaction={this.props.update} />
     })
     return (
       <div>
@@ -58,6 +52,7 @@ const CurrentList = React.createClass({
               <th>Description</th>
               <th>Value</th>
               <th>Type</th>
+              <th>Date Updated</th>
               <th></th>
               <th>Delete</th>
               <th>Update</th>
