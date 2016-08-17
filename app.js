@@ -4,11 +4,12 @@ var favicon = require('serve-favicon');
 var logger = require('morgan');
 var cookieParser = require('cookie-parser');
 var bodyParser = require('body-parser');
+var mongo = require('mongo');
 
-const MONGO_URL = 'mongodb://localhost/bankingdb';
-const PORT = 3000;
-require('mongoose').connect(MONGO_URL, err => {
-  console.log(err || `Mongodb connected to ${MONGO_URL}`);
+const MONGO_URI = process.env.MONGO_URI || 'mongodb://localhost/bankingdb';
+const PORT = process.env.PORT || 3000;
+require('mongoose').connect(MONGO_URI, err => {
+  console.log(err || `Mongodb connected to ${MONGO_URI}`);
 });
 
 var routes = require('./routes/server');

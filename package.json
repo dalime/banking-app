@@ -5,9 +5,10 @@
   "main": "app.js",
   "start": "node app.js",
   "scripts": {
+    "dev": "webpack-dev-server --port 3000 --inline --hot --content-base build/ --history-api-fallback",
     "start": "node ./node_modules/babel-cli/bin/babel-node.js --presets react,es2015 app.js",
-    "postinstall": "webpack --config ./webpack.config.js --progress --colors",
-    "build": "webpack --config ./webpack.config.js"
+    "build": "webpack --config ./webpack.config.js",
+    "postinstall": "npm run build"
   },
   "engines": {
     "node": "6.3.1"
@@ -26,6 +27,7 @@
     "express": "~4.13.4",
     "jade": "~1.11.0",
     "jquery": "^3.1.0",
+    "mongo": "^0.1.0",
     "mongoose": "^4.5.9",
     "mongoose-timestamp": "^0.6.0",
     "morgan": "~1.7.0",
