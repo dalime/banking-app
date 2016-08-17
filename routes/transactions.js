@@ -1,7 +1,7 @@
 var express = require('express');
 var router = express.Router();
 
-let Transaction = require('../models/transaction');
+const Transaction = require('../models/transaction');
 
 // GET ALL
 router.get('/', (req, res) => {
