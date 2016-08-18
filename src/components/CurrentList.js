@@ -54,7 +54,7 @@ const CurrentList = React.createClass({
         />
       );
     });
-    let arrTransactions = transactionList.length ? transactionList : "";
+    let display = transactionList.length ? transactionList : "";
     return (
       <div>
         <h3>Transaction Details</h3>
@@ -71,7 +71,7 @@ const CurrentList = React.createClass({
             </tr>
           </thead>
           <tbody>
-            {arrTransactions}
+            {display}
           </tbody>
         </table>
       </div>

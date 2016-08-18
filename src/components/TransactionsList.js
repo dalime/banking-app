@@ -81,18 +81,17 @@ const TransactionsList = React.createClass({
   },
 
   updateTransaction(transactionId, newDescription, newValue, newType) {
-    let updateTransactions = this.state.transactions;
     let updateTransaction = {
       description: newDescription,
       value: newValue,
       type: newType
     };
+    let updateTransactions = this.state.transactions;
     for (let i = 0; i < updateTransactions.length; i++) {
       if (updateTransactions[i]._id === transactionId) {
         updateTransactions[i] = updateTransaction;
       }
     }
-    this.setState({transactions: updateTransactions});
 
     ajax({
       type: 'PUT',
@@ -100,7 +99,8 @@ const TransactionsList = React.createClass({
       data: updateTransaction
     })
     .done(transaction => {
-      console.log(transaction);
+      this.setState({transactions: updateTransactions});
+      this.updateBalances();
     })
     .fail(err => {
       console.error(err);
