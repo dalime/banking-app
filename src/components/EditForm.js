@@ -22,11 +22,15 @@ const EditForm = React.createClass({
     this.props.formVisible();
   },
   render() {
+
     return (
       <div hidden={this.props.hidden}>
-        <input id="editDescription" placeholder={this.props.transactionDescription} type="text" value={this.state.description} onChange={this.onDescriptionInputChange} required/>
-        <input id="editValue" placeholder={this.props.transactionValue} type="number" value={this.state.value} onChange={this.onValueInputChange} required/>
-        <input id="editType" placeholder={this.props.transactionType} type="text" value={this.state.type} onChange={this.onTypeInputChange} required/>
+        <input id="editDescription" placeholder={this.props.transactionDescription} type="text" value={this.state.description} onChange={e => this.onDescriptionInputChange(e)} required/>
+        <input id="editValue" placeholder={this.props.transactionValue} type="number" value={this.state.value} onChange={e => this.onValueInputChange(e)} required/>
+        <label>Debit: </label>
+        <input id="editDebit" type="radio" value="Debit" onClick={e => this.onTypeInputChange(e)}/>
+        <label>Credit: </label>
+        <input id="editCredit" type="radio" value="Credit" onClick={e => this.onTypeInputChange(e)}/>
         <button onClick={this.confirmChange}>Confirm</button>
       </div>
     )
