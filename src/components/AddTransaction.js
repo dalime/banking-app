@@ -40,7 +40,9 @@ const AddTransaction = React.createClass({
           <input type="radio" name="debitCredit" value="Debit" onClick={this.onTypeInputChange}/>
           <label>Credit</label>
           <input type="radio" name="debitCredit" value="Credit" onClick={this.onTypeInputChange}/>
-          <button className="btn btn-primary" onClick={this.addTransaction}>Add</button>
+          <button className="btn btn-info btn-sm" onClick={this.addTransaction}>
+            <span className="glyphicon glyphicon-plus" aria-hidden="true"></span>
+          </button>
         </form>
       </div>
 

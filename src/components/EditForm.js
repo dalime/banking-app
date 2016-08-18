@@ -25,13 +25,17 @@ const EditForm = React.createClass({
 
     return (
       <div hidden={this.props.hidden}>
+        <label>Description: </label>
         <input id="editDescription" placeholder={this.props.transactionDescription} type="text" value={this.state.description} onChange={e => this.onDescriptionInputChange(e)} required/>
+        <label>Value: </label>
         <input id="editValue" placeholder={this.props.transactionValue} type="number" value={this.state.value} onChange={e => this.onValueInputChange(e)} required/>
         <label>Debit: </label>
         <input id="editDebit" type="radio" value="Debit" onClick={e => this.onTypeInputChange(e)}/>
         <label>Credit: </label>
         <input id="editCredit" type="radio" value="Credit" onClick={e => this.onTypeInputChange(e)}/>
-        <button onClick={this.confirmChange}>Confirm</button>
+        <button className="btn btn-primary btn-sm" onClick={this.confirmChange}>
+          <span className="glyphicon glyphicon-ok" aria-hidden="true"></span>
+        </button>
       </div>
     )
   }

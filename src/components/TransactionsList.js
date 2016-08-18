@@ -40,7 +40,13 @@ const TransactionsList = React.createClass({
         }
       })
       balance = debitBalance - creditBalance;
-      this.setState({balance: balance, debitCount: debitCount, creditCount: creditCount, debitBalance: debitBalance, creditBalance: creditBalance});
+      this.setState({
+        balance: balance,
+        debitCount: debitCount, 
+        creditCount: creditCount,
+        debitBalance: debitBalance,
+        creditBalance: creditBalance
+      });
     })
     .fail(err => {
       console.log('ERROR: ', err);
@@ -111,10 +117,20 @@ const TransactionsList = React.createClass({
       return (
         <div>
           <h1>Coding House Bank</h1>
-          <Totals balance={this.state.balance} debitCount={this.state.debitCount} creditCount={this.state.creditCount} debitBalance={this.state.debitBalance} creditBalance={this.state.creditBalance}/>
+          <Totals
+            balance={this.state.balance}
+            debitCount={this.state.debitCount}
+            creditCount={this.state.creditCount}
+            debitBalance={this.state.debitBalance}
+            creditBalance={this.state.creditBalance}
+          />
           <AddTransaction add={this.addTransaction}/>
           <hr/>
-          <CurrentList currTransactions={this.state.transactions} delete={this.deleteTransaction} update={this.updateTransaction} />
+          <CurrentList
+            currTransactions={this.state.transactions}
+            delete={this.deleteTransaction}
+            update={this.updateTransaction}
+          />
         </div>
         )
     } else {

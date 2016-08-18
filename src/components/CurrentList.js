@@ -25,13 +25,25 @@ const Transaction = React.createClass({
           <td>{this.props.transactionType}</td>
           <td>{this.props.transactionDate}</td>
           <td>
-            <EditForm hidden={this.state.visible} formVisible={this.setFormHidden} updateTransaction={this.props.updateTransaction} transactionId={this.props.transactionId} transactionDescription={this.props.transactionDescription} transactionValue={this.props.transactionValue} transactionType={this.props.transactionType}/>
+            <EditForm
+              hidden={this.state.visible}
+              formVisible={this.setFormHidden}
+              updateTransaction={this.props.updateTransaction}
+              transactionId={this.props.transactionId}
+              transactionDescription={this.props.transactionDescription}
+              transactionValue={this.props.transactionValue}
+              transactionType={this.props.transactionType}
+            />
           </td>
           <td>
-            <button className="btn btn-default" onClick={this.deleteTransaction}>Delete</button>
+            <button className="btn btn-danger btn-sm" onClick={this.deleteTransaction}>
+              <span className="glyphicon glyphicon-remove" aria-hidden="true"></span>
+            </button>
           </td>
           <td>
-            <button className="btn btn-primary" onClick={this.updateButtonClick}>Update</button>
+            <button className="btn btn-success btn-sm" onClick={this.updateButtonClick}>
+              <span className="glyphicon glyphicon-pencil" aria-hidden="true"></span>
+            </button>
           </td>
         </tr>
     )
