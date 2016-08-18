@@ -30,7 +30,7 @@ const AddTransaction = React.createClass({
   render() {
     return (
       <div>
-        <h2>Add New Transaction</h2>
+        <h3>Add New Transaction</h3>
         <form>
           <label>For?:</label>
           <input type="text" onChange={this.onDescriptionInputChange} required/>

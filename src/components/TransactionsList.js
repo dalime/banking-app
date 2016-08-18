@@ -109,7 +109,7 @@ const TransactionsList = React.createClass({
     if (this.state.transactions) {
       return (
         <div className="container">
-          <h1>CH Bank</h1>
+          <h1>Coding House Bank</h1>
           <div>
             <Totals balance={this.state.balance} debitCount={this.state.debitCount} creditCount={this.state.creditCount} debitBalance={this.state.debitBalance} creditBalance={this.state.creditBalance}/>
           </div>
