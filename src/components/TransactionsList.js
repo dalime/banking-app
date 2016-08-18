@@ -16,7 +16,12 @@ const TransactionsList = React.createClass({
         creditBalance: 0
       }
   },
+
   componentDidMount() {
+    this.updateBalances();
+  },
+
+  updateBalances() {
     get('/transactions')
     .done(transactions => {
       this.setState({transactions: transactions});
@@ -41,44 +46,40 @@ const TransactionsList = React.createClass({
       console.log('ERROR: ', err);
     })
   },
-  // componentDidUpdate() {
-  //   this.setState({transactions: this.state.transactions, balance: this.state.balance, debitCount: this.state.debitCount, creditCount: this.state.creditCount, debitBalance: this.state.debitBalance, creditBalance: this.state.creditBalance});
-  // },
-  addTransaction(transaction) {
-    console.log('TRANSACTION TO ADD: ', transaction);
-    this.setState({transactions: this.state.transactions.concat(transaction)});
 
+  addTransaction(transaction) {
     ajax({
       type: 'POST',
       url: '/transactions',
       data: transaction
     })
     .done(transaction => {
-      console.log(transaction);
+      this.setState({transactions: this.state.transactions.concat(transaction)});
+      this.updateBalances();
     })
     .fail(err => {
-      console.log(err);
+      console.error(err);
     })
   },
+
   deleteTransaction(transactionId) {
     let deleteArr = this.state.transactions.filter(transaction => {
       return transaction._id != transactionId;
     });
-    this.setState({transactions: deleteArr});
-
-    console.log(`/transactions/${transactionId}`);
 
     ajax({
       type: 'DELETE',
       url: `/transactions/${transactionId}`,
     })
     .done(transaction => {
-      console.log(transaction);
+      this.setState({transactions: deleteArr});
+      this.updateBalances();
     })
     .fail(err => {
-      console.log(err);
+      console.error(err);
     })
   },
+
   updateTransaction(transactionId, newDescription, newValue, newType) {
     let updateTransactions = this.state.transactions;
     let updateTransaction = {
@@ -102,25 +103,19 @@ const TransactionsList = React.createClass({
       console.log(transaction);
     })
     .fail(err => {
-      console.log(err);
+      console.error(err);
     })
   },
   render() {
     if (this.state.transactions) {
       return (
-        <div className="container">
+        <div>
           <h1>Coding House Bank</h1>
-          <div>
-            <Totals balance={this.state.balance} debitCount={this.state.debitCount} creditCount={this.state.creditCount} debitBalance={this.state.debitBalance} creditBalance={this.state.creditBalance}/>
-          </div>
-          <div>
-            <AddTransaction add={this.addTransaction}/>
-          </div>
+          <Totals balance={this.state.balance} debitCount={this.state.debitCount} creditCount={this.state.creditCount} debitBalance={this.state.debitBalance} creditBalance={this.state.creditBalance}/>
+          <AddTransaction add={this.addTransaction}/>
           <hr/>
-          <div>
-            <CurrentList currTransactions={this.state.transactions} delete={this.deleteTransaction} update={this.updateTransaction} />
-          </div>
-          </div>
+          <CurrentList currTransactions={this.state.transactions} delete={this.deleteTransaction} update={this.updateTransaction} />
+        </div>
         )
     } else {
       return (

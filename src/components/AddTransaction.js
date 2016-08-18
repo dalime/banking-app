@@ -3,9 +3,9 @@ import React from 'react';
 const AddTransaction = React.createClass({
   getInitialState() {
     return {
-      description: null,
-      value: null,
-      type: null
+      description: "",
+      value: "",
+      type: ""
     }
   },
   onDescriptionInputChange(event) {
@@ -25,7 +25,7 @@ const AddTransaction = React.createClass({
       type: this.state.type
     }
     this.props.add(transaction);
-    this.setState({description: null, value: null, type: null})
+    this.setState({description: "", value: ""})
   },
   render() {
     return (
@@ -33,9 +33,9 @@ const AddTransaction = React.createClass({
         <h3>Add New Transaction</h3>
         <form>
           <label>For?:</label>
-          <input type="text" onChange={this.onDescriptionInputChange} required/>
+          <input type="text" onChange={e => this.onDescriptionInputChange(e)} required/>
           <label>Value:</label>
-          <input type="number" onChange={this.onValueInputChange} required/>
+          <input type="number" onChange={e => this.onValueInputChange(e)} required/>
           <label>Debit</label>
           <input type="radio" name="debitCredit" value="Debit" onClick={this.onTypeInputChange}/>
           <label>Credit</label>

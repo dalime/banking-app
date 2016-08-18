@@ -41,8 +41,20 @@ const Transaction = React.createClass({
 const CurrentList = React.createClass({
   render() {
     let transactionList = this.props.currTransactions.map(transaction => {
-      return <Transaction key={transaction._id} transactionId={transaction._id} transactionDescription={transaction.description} transactionValue={transaction.value} transactionType={transaction.type} transactionDate={transaction.createdAt} deleteTransaction={this.props.delete} updateTransaction={this.props.update} />
-    })
+      return (
+        <Transaction
+          key={transaction._id}
+          transactionId={transaction._id}
+          transactionDescription={transaction.description}
+          transactionValue={transaction.value}
+          transactionType={transaction.type}
+          transactionDate={transaction.createdAt}
+          deleteTransaction={this.props.delete}
+          updateTransaction={this.props.update}
+        />
+      );
+    });
+    let arrTransactions = transactionList.length ? transactionList : "";
     return (
       <div>
         <h3>Transaction Details</h3>
@@ -59,12 +71,12 @@ const CurrentList = React.createClass({
             </tr>
           </thead>
           <tbody>
-            {transactionList}
+            {arrTransactions}
           </tbody>
         </table>
       </div>
-    )
+    );
   }
-})
+});
 
 export default CurrentList;
